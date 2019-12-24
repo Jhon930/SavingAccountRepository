@@ -1,6 +1,7 @@
 package com.savingaccount.ms.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -8,7 +9,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.server.ServerRequest;
+import org.springframework.web.reactive.function.server.ServerResponse;
 
+import com.savingaccount.ms.model.Account;
 import com.savingaccount.ms.model.SavingAccount;
 import com.savingaccount.ms.service.SavingAccountService;
 
@@ -27,10 +31,17 @@ public class SavingAccountController {
 		return service.findByAccountId(id);
 	}
 	
-	@PostMapping("/api/savingaccount/insert")
+	/*@PostMapping("/insert")
 	public Mono<SavingAccount> insertBankSavingAccount (@RequestBody SavingAccount account){
-		
 		return service.saveSavingAccount(account);
+	}*/
+	
+	@PostMapping("/savingaccount/insert")
+	public Mono<SavingAccount> insertSavingAccount(@RequestBody SavingAccount savingAccount){
+		Account account = new Account();
+		account.setNumberAccount(savingAccount.getNumber());
+		account.setCurrentBalance(savingAccount.getBalance());
+		return service.saveSavingAccount(savingAccount);	
 	}
 	
 	/*@PostMapping("/insert")
@@ -40,5 +51,7 @@ public class SavingAccountController {
 		insertBankAccount(account).subscribe();
 		return service.saveAccount(savingAccount);
 	}*/
+	
+
 
 }

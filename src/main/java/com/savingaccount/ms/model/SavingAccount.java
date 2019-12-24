@@ -10,29 +10,71 @@ public class SavingAccount {
 	
 	@Id
 	private String id;
-	private BigDecimal amount;
+	private String number;
+	private BigDecimal balance;
+	private BigDecimal deposit;
+	private BigDecimal withdraw;
+	private String status;
 	
 	public SavingAccount() {
 		
 	}
 	
-	public SavingAccount(String id, BigDecimal amount) {
+	public SavingAccount(String id, String number, BigDecimal balance, BigDecimal deposit, BigDecimal withdraw, String status) {
 		this.id = id;
-		this.amount = amount;
+		this.number = number;
+		this.balance = balance;
+		this.deposit = deposit;
+		this.withdraw = withdraw;
+		this.status = status;
 	}
 	
 	public String getId() {
 		return id;
 	}
+
 	public void setId(String id) {
 		this.id = id;
 	}
-	public BigDecimal getAmount() {
-		return amount;
+
+	public String getNumber() {
+		return number;
 	}
-	public void setAmount(BigDecimal amount) {
-		this.amount = amount;
+
+	public void setNumber(String number) {
+		this.number = number;
+	}
+
+	public BigDecimal getBalance() {
+		return balance;
+	}
+
+	public void setBalance(BigDecimal balance) {
+		this.balance = balance;
+	}
+
+	public BigDecimal getDeposit() {
+		return deposit;
+	}
+
+	public void setDeposit(BigDecimal deposit) {
+		this.deposit = deposit;
+	}
+
+	public BigDecimal getWithdraw() {
+		return withdraw;
+	}
+
+	public void setWithdraw(BigDecimal withdraw) {
+		this.withdraw = withdraw;
 	}
 	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 }
