@@ -1,6 +1,7 @@
 package com.savingaccount.ms.model;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -12,20 +13,20 @@ public class SavingAccount {
 	private String id;
 	private String number;
 	private BigDecimal balance;
-	private BigDecimal deposit;
-	private BigDecimal withdraw;
 	private String status;
+	private BigDecimal amount;
+	
+	private List<Client> clients;
+	
 	
 	public SavingAccount() {
 		
 	}
 	
-	public SavingAccount(String id, String number, BigDecimal balance, BigDecimal deposit, BigDecimal withdraw, String status) {
+	public SavingAccount(String id, String number, BigDecimal balance, String status) {
 		this.id = id;
 		this.number = number;
 		this.balance = balance;
-		this.deposit = deposit;
-		this.withdraw = withdraw;
 		this.status = status;
 	}
 	
@@ -52,22 +53,6 @@ public class SavingAccount {
 	public void setBalance(BigDecimal balance) {
 		this.balance = balance;
 	}
-
-	public BigDecimal getDeposit() {
-		return deposit;
-	}
-
-	public void setDeposit(BigDecimal deposit) {
-		this.deposit = deposit;
-	}
-
-	public BigDecimal getWithdraw() {
-		return withdraw;
-	}
-
-	public void setWithdraw(BigDecimal withdraw) {
-		this.withdraw = withdraw;
-	}
 	
 	public String getStatus() {
 		return status;
@@ -77,4 +62,23 @@ public class SavingAccount {
 		this.status = status;
 	}
 
+	public List<Client> getClients() {
+		return clients;
+	}
+
+	public void setClients(List<Client> clients) {
+		this.clients = clients;
+	}
+
+	public BigDecimal getAmount() {
+		return amount;
+	}
+
+	public void setAmount(BigDecimal amount) {
+		this.amount = amount;
+	}
+	
+	
+	
+	
 }
