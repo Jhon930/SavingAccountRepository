@@ -16,18 +16,21 @@ public class SavingAccount {
 	private String status;
 	private BigDecimal amount;
 	
-	private List<Client> clients;
+	private List<PersonClient> personClients;
+	private BigDecimal currency;
 	
 	
 	public SavingAccount() {
 		
 	}
 	
-	public SavingAccount(String id, String number, BigDecimal balance, String status) {
+	public SavingAccount(String id, String number, BigDecimal balance, String status, BigDecimal amount,  BigDecimal currency) {
 		this.id = id;
 		this.number = number;
 		this.balance = balance;
 		this.status = status;
+		this.amount = amount;
+		this.currency = currency;
 	}
 	
 	public String getId() {
@@ -62,12 +65,12 @@ public class SavingAccount {
 		this.status = status;
 	}
 
-	public List<Client> getClients() {
-		return clients;
+	public List<PersonClient> getClients() {
+		return personClients;
 	}
 
-	public void setClients(List<Client> clients) {
-		this.clients = clients;
+	public void setClients(List<PersonClient> personClients) {
+		this.personClients = personClients;
 	}
 
 	public BigDecimal getAmount() {
@@ -76,6 +79,22 @@ public class SavingAccount {
 
 	public void setAmount(BigDecimal amount) {
 		this.amount = amount;
+	}
+
+	public List<PersonClient> getPersonClients() {
+		return personClients;
+	}
+
+	public void setPersonClients(List<PersonClient> personClients) {
+		this.personClients = personClients;
+	}
+
+	public BigDecimal getCurrency() {
+		return currency;
+	}
+
+	public void setCurrency(BigDecimal currency) {
+		this.currency = currency;
 	}
 	
 	

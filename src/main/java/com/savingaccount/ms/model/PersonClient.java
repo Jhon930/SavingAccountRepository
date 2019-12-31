@@ -1,6 +1,6 @@
 package com.savingaccount.ms.model;
 
-public class Client {
+public class PersonClient {
 	
 	private String codeClient;
     private String name;
@@ -8,7 +8,7 @@ public class Client {
     private String dni;
     private String clientType;
     
-    public Client() {
+    public PersonClient() {
 		
 	}
 

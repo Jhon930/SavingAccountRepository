@@ -8,6 +8,8 @@ public class Account {
 	private String numberAccount;
 	private BigDecimal currentBalance;
 	private String  createdAt;
+	private String typeAccount;
+	private String status;
 	private SavingAccount savingAccount;
 	
 	public Account() {
@@ -46,6 +48,22 @@ public class Account {
 		this.createdAt = createdAt;
 	}
 
+	public String getTypeAccount() {
+		return typeAccount;
+	}
+
+	public void setTypeAccount(String typeAccount) {
+		this.typeAccount = typeAccount;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	public SavingAccount getSavingAccount() {
 		return savingAccount;
 	}
@@ -53,8 +71,7 @@ public class Account {
 	public void setSavingAccount(SavingAccount savingAccount) {
 		this.savingAccount = savingAccount;
 	}
+	
+	
 
-	
-	
-	
 }

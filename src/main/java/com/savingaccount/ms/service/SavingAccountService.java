@@ -14,10 +14,5 @@ public interface SavingAccountService {
 	 public Mono<SavingAccount> findByAccountId(String id);
 	 
 	 public Mono<SavingAccount> findByDni(String dni);
-	 
-	 public Mono<SavingAccount> findByNumberAccount(String number);
-	 
-	 
-	
-	
+	 	 
 }

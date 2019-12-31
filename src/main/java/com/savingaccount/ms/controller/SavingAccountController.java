@@ -22,15 +22,13 @@ import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
 import com.savingaccount.ms.model.Account;
-import com.savingaccount.ms.model.Client;
+import com.savingaccount.ms.model.PersonClient;
 import com.savingaccount.ms.model.SavingAccount;
 import com.savingaccount.ms.service.SavingAccountService;
-import com.thoughtworks.xstream.converters.javabean.JavaBeanConverter.DuplicateFieldException;
 
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-@Component
 @RestController
 @RequestMapping("/api/savingaccounts")
 public class SavingAccountController {
@@ -61,12 +59,53 @@ public class SavingAccountController {
 		
 	}
 	
+	@GetMapping("/person/{dni}")
 	public Mono<SavingAccount> findByDni(@PathVariable String dni){
 		
 		return service.findByDni(dni);
 	}
 	
+	
 	@PutMapping("/updatebalance1/{id}")
+	public Mono <SavingAccount> insertDeposit(@Valid @RequestBody SavingAccount savingAccount, @PathVariable(value = "id") String id){
+		
+	    //BigDecimal balance = savingAccount.getBalance();
+	    //BigDecimal amount = savingAccount.getAmount();
+	    
+		return service.findByAccountId(id).flatMap(a-> {
+			 a.setBalance(a.getBalance().add(savingAccount.getAmount()));
+			 return service.saveSavingAccount(a);
+		});
+			
+	}
+	
+	@PutMapping("/updatebalance2/{id}")
+	public Mono <SavingAccount> insertWithdraw(@Valid @RequestBody SavingAccount savingAccount, @PathVariable(value = "id") String id){
+		
+	    //BigDecimal balance = savingAccount.getBalance();
+	    //BigDecimal amount = savingAccount.getAmount();
+	    
+		return service.findByAccountId(id).flatMap(a-> {
+			 a.setBalance(a.getBalance().subtract(savingAccount.getAmount()));
+			 return service.saveSavingAccount(a);
+		});
+			
+	}
+	
+	
+	/*@PutMapping("/updatebalance1")
+	public Mono<SavingAccount> insertDeposit(@Valid @RequestBody SavingAccount savingAccount){
+		
+		return service.insertDeposit(savingAccount);
+	}
+	
+	@PutMapping("/updatebalance2")
+	public Mono<SavingAccount> insertWithDraw(@Valid @RequestBody SavingAccount savingAccount){
+		
+		return service.insertWithdraw(savingAccount);
+	}*/
+	
+	/*@PutMapping("/updatebalance1/{id}")
 	public Mono<ResponseEntity<SavingAccount>> insertDeposit(@Valid @RequestBody SavingAccount savingAccount){
 		
 	    BigDecimal balance = savingAccount.getBalance();
@@ -100,6 +139,6 @@ public class SavingAccountController {
 				.body(a))
 		.defaultIfEmpty(ResponseEntity.notFound().build());
 			
-	}
+	}*/
 
 }
